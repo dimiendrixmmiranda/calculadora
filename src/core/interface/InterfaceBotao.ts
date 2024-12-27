@@ -4,5 +4,6 @@ export default interface BotaoProps {
     coluna?: string
     linha?: string
     style?: string
+    imagem?:string | null
     onclick?:() => void
 }

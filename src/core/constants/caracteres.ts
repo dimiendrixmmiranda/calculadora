@@ -56,7 +56,7 @@ export const caracteres: BotaoProps[] = [
         cor:'var(--magenta)'
     },
     {
-        texto: 'x',
+        texto: '×',
         linha: '4/5',
         coluna: '4/5',
         cor:'var(--magenta)'

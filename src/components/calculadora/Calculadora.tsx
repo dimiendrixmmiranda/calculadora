@@ -3,14 +3,12 @@ import Botao from '../botao/Botao'
 import style from './style.module.css'
 import { caracteres } from '@/core/constants/caracteres'
 import { GiHamburgerMenu } from "react-icons/gi";
+import { caracteresAuxiliares } from '@/core/constants/caractereAuxiliar';
 
 export default function Calculadora() {
     const [visible, setVisible] = useState(false)
     const [linhaVisorAtual, setLinhaVisorAtual] = useState('0')
-
-    const btnsAuxiliar = [
-        'a', 'b', 'c', 'd', 'a', 'b', 'c', 'd'
-    ]
+    const PI = 3.14159
     function operar(texto: string) {
         if (texto == '⌫') {
             if (linhaVisorAtual.length >= 2) {
@@ -27,9 +25,37 @@ export default function Calculadora() {
             }
         }
 
+        if(texto == 'b'){
+            setLinhaVisorAtual('bhaskara')
+        }
+
         if (texto == '=') {
-            const operacao = linhaVisorAtual.match(/(?<!^)(\+|-|x|÷|%)/gi);
-            const [valor1, , valor2] = linhaVisorAtual.split(/(?<!^)(\+|-|x|÷|%)/gi);
+            const operacao = linhaVisorAtual.match(/(?<!^)(\+|-|×|÷|%|\^)/g);
+            let [valor1, , valor2] = linhaVisorAtual.split(/(?<!^)(\+|-|×|÷|%|\^)/g);
+
+            // LÓGICA DE PI
+            if (valor1.includes('π')) {
+                if (valor1 == 'π') {
+                    valor1 = PI.toString()
+                } else {
+                    const converterPi = parseFloat(valor1) * PI
+                    valor1 = converterPi.toString()
+                }
+            }
+            if (valor2.includes('π')) {
+                if (valor2 == 'π') {
+                    valor2 = PI.toString()
+                } else {
+                    const converterPi = parseFloat(valor2) * PI
+                    valor2 = converterPi.toString()
+                }
+            }
+
+            // LÓGICA DE BHASKARA
+            if(operacao!= undefined && operacao?.length>=2){
+                console.log('caiu em bhaskara')
+                console.log(linhaVisorAtual)
+            }
 
             let resultado = 0
 
@@ -42,7 +68,7 @@ export default function Calculadora() {
                     resultado = parseFloat(valor1) - parseFloat(valor2)
                     setLinhaVisorAtual(resultado.toString())
                 }
-                if (operacao[0] == 'x') {
+                if (operacao[0] == '×') {
                     resultado = parseFloat(valor1) * parseFloat(valor2)
                     setLinhaVisorAtual(resultado.toString())
                 }
@@ -56,16 +82,21 @@ export default function Calculadora() {
                     resultado = parseFloat(valor1) - (parseFloat(valor1) * novoValor2)
                     setLinhaVisorAtual(resultado.toString())
                 }
+                if (operacao[0] == '^') {
+                    const novoValor = Math.pow(parseFloat(valor1), parseFloat(valor2))
+                    setLinhaVisorAtual(novoValor.toString())
+                }
             }
         }
-
+        if (texto == 'xʸ') {
+            setLinhaVisorAtual(linhaVisorAtual + '^')
+        }
         if (texto == 'C') {
             setLinhaVisorAtual('0')
         }
         if (texto == '±') {
             setLinhaVisorAtual((parseFloat(linhaVisorAtual) * -1).toString())
         }
-
         if (texto == 'x²') {
             const valor = Math.pow(parseFloat(linhaVisorAtual), 2)
             setLinhaVisorAtual(valor.toString())
@@ -95,9 +126,9 @@ export default function Calculadora() {
             </div>
             <div className={style.containerTecladoAuxiliar} style={{ display: visible ? 'grid' : 'none' }}>
                 {
-                    btnsAuxiliar.map((btn, i) => {
+                    caracteresAuxiliares.map((btn, i) => {
                         return (
-                            <Botao key={i} cor='var(--magenta)' texto={btn} style='h-[50px]'></Botao>
+                            <Botao key={i} cor={btn.cor} texto={btn.texto} style='h-[50px]' onclick={() => operar(btn.texto)} imagem={btn.imagem}></Botao>
                         )
                     })
                 }
