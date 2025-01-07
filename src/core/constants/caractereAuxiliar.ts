@@ -22,10 +22,11 @@ export const caracteresAuxiliares: BotaoProps[] = [
     },
     // bhaskara será uma operação expecial, posso colocar um input em cima do visor...
     {
-        texto:'b',
+        texto:'',
         imagem:'/bhaskara.png',
         cor:'var(--magenta)',
-        operacao: true,
-        valor: 'bh'
+        operacao: false,
+        valor: 'bhaskara',
+        operacaoEspecial: true
     },
 ]

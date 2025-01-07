@@ -3,9 +3,10 @@ export default interface BotaoProps {
     valor: string
     cor: string
     operacao: boolean
+    operacaoEspecial?:boolean
     coluna?: string
     linha?: string
     style?: string
     imagem?:string | null
-    onclick?:() => void
+    onclick?:(e:any) => void
 }

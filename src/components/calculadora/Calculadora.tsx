@@ -10,7 +10,7 @@ import { numero } from '@/core/funcoesAuxiliares/funcaoNumero';
 export default function Calculadora() {
     const [visible, setVisible] = useState(false)
     const [linhaVisorAtual, setLinhaVisorAtual] = useState('0')
-
+    const [historico, setHistorico] = useState<string[]>([])
     const PI = 3.14159
 
     function operacao(operacao: string) {
@@ -19,7 +19,6 @@ export default function Calculadora() {
                 const operadorExistente = linhaVisorAtual.match(/(?<!^)(\+|-|\*|\/|%|\^)/g);
                 let [valor1, , valor2] = linhaVisorAtual.split(/(?<!^)(\+|-|\*|\/|%|\^)/g)
                 let resultado = 0
-
                 let novoValor1 = 0
                 let novoValor2 = 0
 
@@ -57,7 +56,8 @@ export default function Calculadora() {
                 } else if (operadorExistente != null && operadorExistente[0] === '^') {
                     resultado = Math.pow(novoValor1, novoValor2)
                 }
-
+                const linhaHistorico = `${valor1} ${operadorExistente} ${valor2} = ${resultado}`
+                setHistorico([linhaHistorico, ...historico])
                 setLinhaVisorAtual(resultado.toString());
             }
             if (operacao === '+' || operacao === '-' || operacao === '*' || operacao === '/' || operacao === '%' || operacao == '^') {
@@ -105,7 +105,8 @@ export default function Calculadora() {
                     } else if (operadorAnterior === '^') {
                         resultado = Math.pow(novoValor1, novoValor2)
                     }
-
+                    const linhaHistorico = `${novoValor1} ${operadorExistente} ${novoValor2} = ${resultado}`
+                    setHistorico([linhaHistorico, ...historico])
                     setLinhaVisorAtual(resultado.toString() + operacao);
                 } else {
                     setLinhaVisorAtual(linhaVisorAtual + operacao);
@@ -120,13 +121,50 @@ export default function Calculadora() {
         }
     }
 
+    function operacaoEspecial(operacao: string, e: any) {
+        const visor = document.querySelector('#visor')
+        const operacaoEspecial = visor?.querySelector('#operacaoEspecial')
+
+        if (operacaoEspecial === null) {
+            const input = criarInput()
+            const div = document.createElement('div')
+            div.id = 'operacaoEspecial'
+            div.classList.add('operacaoEspecial')
+            input.map(item => div.appendChild(item))
+            visor?.appendChild(div)
+        } else {
+            operacaoEspecial?.remove()
+        }
+    }
+
+
+    function criarInput() {
+        const input = document.createElement('input')
+        input.type = 'text'
+        input.placeholder = 'Digite sua Expressão ...'
+
+        const btn = document.createElement('button')
+        return [input, btn]
+    }
+
     return (
         <div className={style.calculadora}>
             <button className={style.menuAuxiliar} onClick={() => visible ? setVisible(false) : setVisible(true)}>
                 <GiHamburgerMenu />
             </button>
-            <div className={style.containerVisor}>
-                <div></div>
+            {/* overflow do historico não funciona */}
+            <div className={style.containerVisor} id='visor'>
+                <ul className='w-fit ml-auto mr-2 pr-2 pt-1 h-[80px] flex flex-col-reverse gap-1 text-end overflow-y-scroll'>
+                    {
+                        historico.map((linha, i) => {
+                            return (
+                                <li key={i} className='leading-4'>
+                                    <p>{linha}</p>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
                 <p className={`font-bold text-end pr-2 ${linhaVisorAtual.length > 12 ? 'text-2xl' : 'text-4xl'}`} style={{ textShadow: '1px 1px 2px black' }}>{linhaVisorAtual}</p>
             </div>
             <div className={style.containerTeclado}>
@@ -142,7 +180,7 @@ export default function Calculadora() {
                 {
                     caracteresAuxiliares.map((caracter, i) => {
                         return (
-                            <Botao texto={caracter.texto} key={i} coluna={caracter.coluna ? caracter.coluna : 'auto'} linha={caracter.linha ? caracter.linha : 'auto'} operacao={caracter.operacao} valor={caracter.valor} cor={caracter.cor} onclick={() => caracter.operacao ? operacao(caracter.valor) : numero(caracter.valor, linhaVisorAtual, setLinhaVisorAtual)}></Botao>
+                            <Botao key={i} imagem={caracter.imagem} texto={caracter.texto} coluna={caracter.coluna ? caracter.coluna : 'auto'} linha={caracter.linha ? caracter.linha : 'auto'} operacao={caracter.operacao} valor={caracter.valor} cor={caracter.cor} onclick={(e) => caracter.operacao ? operacao(caracter.valor) : caracter.operacaoEspecial ? operacaoEspecial(caracter.valor, e) : numero(caracter.valor, linhaVisorAtual, setLinhaVisorAtual)}></Botao>
                         )
                     })
                 }
