@@ -118,6 +118,9 @@ export default function Calculadora() {
             if (operacao === 'x²') { elevarAoQuadrado(linhaVisorAtual, setLinhaVisorAtual) }
             if (operacao === '√x') { raizQuadrada(linhaVisorAtual, setLinhaVisorAtual) }
             if (operacao === '±') { trocarSinal(linhaVisorAtual, setLinhaVisorAtual) }
+            if (operacao === 'CE'){
+                setHistorico([])
+            }
         }
     }
 
@@ -152,13 +155,12 @@ export default function Calculadora() {
             <button className={style.menuAuxiliar} onClick={() => visible ? setVisible(false) : setVisible(true)}>
                 <GiHamburgerMenu />
             </button>
-            {/* overflow do historico não funciona */}
             <div className={style.containerVisor} id='visor'>
-                <ul className='w-fit ml-auto mr-2 pr-2 pt-1 h-[80px] flex flex-col-reverse gap-1 text-end overflow-y-scroll'>
+                <ul className='w-fit ml-auto mr-2 pr-2 pt-1 h-[80px] flex flex-col-reverse gap-1npm run dev text-end overflow-y-scroll'>
                     {
                         historico.map((linha, i) => {
                             return (
-                                <li key={i} className='leading-4'>
+                                <li key={i} className='leading-4' style={{ textShadow: '1px 1px 1px black' }}>
                                     <p>{linha}</p>
                                 </li>
                             )
@@ -176,7 +178,7 @@ export default function Calculadora() {
                     })
                 }
             </div>
-            <div className={style.containerTecladoAuxiliar} style={{ display: visible ? 'grid' : 'none' }}>
+            <div className={style.containerTecladoAuxiliar} style={{ display: visible ? 'flex' : 'none' }}>
                 {
                     caracteresAuxiliares.map((caracter, i) => {
                         return (

@@ -142,19 +142,11 @@ export const caracteres: BotaoProps[] = [
         valor: '%'
     },
     {
-        texto: 'x²',
-        coluna: '2/3',
+        texto: 'CE',
         linha: '1/2',
+        coluna: '2/4',
         cor: 'var(--magenta)',
         operacao: true,
-        valor: 'x²'
-    },
-    {
-        texto: '√x',
-        coluna: '3/4',
-        linha: '1/2',
-        cor: 'var(--magenta)',
-        operacao: true,
-        valor: '√x'
+        valor: 'CE'
     },
 ]
