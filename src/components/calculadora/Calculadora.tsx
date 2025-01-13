@@ -156,7 +156,7 @@ export default function Calculadora() {
                 <GiHamburgerMenu />
             </button>
             <div className={style.containerVisor} id='visor'>
-                <ul className='w-fit ml-auto mr-2 pr-2 pt-1 h-[80px] flex flex-col-reverse gap-1npm run dev text-end overflow-y-scroll'>
+                <ul className='w-fit ml-auto pr-2 pt-1 h-[80px] flex flex-col-reverse gap-1 text-end overflow-y-scroll'>
                     {
                         historico.map((linha, i) => {
                             return (

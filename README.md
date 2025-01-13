@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Calculadora
 
-## Getting Started
+Uma calculadora digital que oferece operações matemáticas básicas como soma, subtração, multiplicação e divisão, com uma interface intuitiva e responsiva. O projeto é desenvolvido com foco em funcionalidade e simplicidade, ideal para cálculos rápidos no dia a dia, seja em dispositivos móveis ou desktops.
 
-First, run the development server:
+![Badge](https://img.shields.io/badge/status-em_desenvolvimento-yellow)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Version](https://img.shields.io/badge/version-1.0.0-brightgreen)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+## 🔗 Demonstração
+
+Acesse o site ao vivo: [Calculadora](https://calculadora-zeta-seven.vercel.app/)
+
+
+## 🚀 Funcionalidades
+
+- Realizar operações básicas: soma, subtração, multiplicação e divisão.  
+- Botão de limpar (C) para resetar os valores inseridos.  
+- Suporte a cálculos com números decimais.  
+- Exibição em tempo real do resultado conforme os valores são inseridos.  
+- Interface responsiva para uso em dispositivos móveis e desktops.  
+- Teclado virtual com botões claros e fáceis de usar.  
+- Suporte a teclado físico para inserção de números e operações.  
+- Histórico opcional de cálculos realizados.  
+- Opção para calcular porcentagens diretamente.  
+
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Frontend**: [React.js / Next.js / ReactIcons]
+- **Estilo**: [CSS / TailwindCSS]
+
+## 🏗️ Estrutura do Projeto
+
+
+```plaintext
+📂 src/
+ ├── 📂 app/
+ ├── 📂 components/
+ ├── 📂 core/ 
+ ├── 📂 utils/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🧑‍💻 Como Rodar o Projeto Localmente
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone o repositório**: git clone https://github.com/dimiendrixmmiranda/calculadora.git
+cd seu-repositorio
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Instale as dependências**: npm install
 
-## Learn More
+3. **Inicie o servidor local**: npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+4. **Acesse o site**: http://localhost:3000.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ✨ Contribuindo
+Contribuições são bem-vindas! Siga os passos abaixo para contribuir:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Faça um fork do projeto.
+2. Crie uma branch para sua feature (git checkout -b minha-feature).
+3. Faça commit de suas alterações (git commit -m 'Adicionei uma nova feature').
+4. Envie sua branch (git push origin minha-feature).
+5. Abra um pull request.
 
-## Deploy on Vercel
+## 📝 Licença
+Este projeto está sob a licença MIT. Consulte o arquivo LICENSE para mais detalhes.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📞 Contato
+Nome: Dimi Endrix Martins Miranda
+Email: [dimiendrixmmiranda@gmail.com]
+LinkedIn: [https://www.linkedin.com/in/dimi-endrix-martins-miranda-86a017341/]
+GitHub: [https://github.com/dimiendrixmmiranda/dimiendrixmmiranda]
+
+
+Criado por __Dimi Endrix Martins Miranda__ 💙
